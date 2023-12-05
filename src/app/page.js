@@ -4,7 +4,7 @@ import ToDoForm from '@/components/ToDoForm/ToDoForm'
 
 export default function Home() {
   return (
-    <div className="container mx-auto">
+    <div className="container">
       <ToDoForm />
     </div>
   )
