@@ -22,7 +22,7 @@ const ToDoForm = () => {
   };
   return (
     <div className="container">
-      <div className="mt-4">
+      {/* <div className="mt-4"> */}
         <Form.Label htmlFor="Title">Title</Form.Label>
         <Form.Control type="text" id="Title" onChange={setTitle} />
 
@@ -39,7 +39,7 @@ const ToDoForm = () => {
         <Button variant="dark" className="mt-3" onClick={handleValues}>
           Add Task
         </Button>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
