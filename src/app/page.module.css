@@ -1,0 +1,17 @@
+.TodoForm, .TodoList{
+    width: 50% !important;
+    margin-top: 20px;
+}
+
+.TodoBox{
+    display: flex;
+}
+
+@media only screen and (max-width: 900px) {
+    .TodoBox{
+        display: block;
+    }
+    .TodoForm, .TodoList{
+        width: 100% !important;
+    }
+}
