@@ -11,7 +11,7 @@ export default function Home() {
       <ToDoForm />
       </div>
       <div className={styles.TodoList}>
-      <h2>To Do List</h2>
+      <h4 className='container'>To Do List</h4>
       <ToDoList />
       </div>
       </div>

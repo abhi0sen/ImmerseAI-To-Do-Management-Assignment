@@ -57,12 +57,13 @@ const ToDoList = () => {
               </div>
               <div className="ms-auto align-self-center d-flex">
                 {todo.completed?
-                <button className="btn btn-outline-success me-2">✔️</button> : 
+                <button onClick = {() => window.location.href = `/ToDoUpdate/${1}`} className="btn btn-outline-success me-2">✏️</button> : 
                 <button className="btn me-2">✅</button> 
                 }
 
                 <button className="btn btn-outline-danger">✖️</button>
               </div>
+                
             </div>
           </li>
             ))}
