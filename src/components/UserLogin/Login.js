@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Link from 'next/link';
+import axios from "axios"
+import { setAuthentication } from "@/utils/auth";
+import Title from '@/components/Navbar/Title';
 
 const Login = () => {
     const [uName, setUName] = useState("");
@@ -10,14 +13,6 @@ const Login = () => {
     const [ errMsg, setErrMsg] = useState("")
 
     const handleValues = () => {
-        if (uName != "") {
-          console.log(uName.target.value);
-        }
-
-        if (password != "") {
-          console.log(password.target.value);
-        }
-
         if(uName == ""){
             setErrMsg("Please enter the username")
         }
@@ -25,19 +20,40 @@ const Login = () => {
             setErrMsg("Please enter the Password")
         }
         else{
-            setErrMsg("Login Successful")
+          const userData = {
+            username: uName,
+            password,
+          };
+          
+          console.log(userData)
+    
+          axios.post('http://localhost:5000/api/login/', userData)
+          .then((res) => {
+            console.log("Login successful ")
+            console.log(res.data.token)
+
+            setAuthentication(res.data.token)
+            setErrMsg("")
+            
+          }
+          )
+          .catch(err => console.log(err))
         }
-        console.log(errMsg)
       };
   return (
     <div className="mt-4">
+        <Title title = {"MyTodo"} />
+
         <Form.Label htmlFor="Username">Username</Form.Label>
-        <Form.Control type="text" id="Username" onChange={(text) => {setUName(text)}} />
+        <Form.Control type="text" id="Username" onChange={(text) => {setUName(text.target.value)}} />
 
         <Form.Label className="mt-4" htmlFor="Password">
         Password
         </Form.Label>
-        <Form.Control type="password" id="Password" onChange={(text) => setPassword(text)} />
+        <Form.Control type="password" id="Password" onChange={(text) => setPassword(text.target.value)} />
+
+
+        <div className="text-danger text-sm">{errMsg}</div>
 
         <span className="mt-3">New user? <Link href="/Register">Register now</Link> </span>
 

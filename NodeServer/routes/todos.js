@@ -18,6 +18,7 @@ router.route('/add').post((req, res) => {
     newtodo.save()
     .then(() => res.json('Todo added'))
     .catch(err => res.status(400).json("Error: "+ err))
+})
 
     router.route("/:id").get((req, res) => {
         Todo.findById(req.params.id)
@@ -37,7 +38,7 @@ router.route('/add').post((req, res) => {
             todo.userId = req.body.userId;
             todo.title = req.body.title;
             todo.description = req.body.description;
-            todo.date = Date.parse(req.body.date);
+            todo.date = req.body.date;
             todo.completed = req.body.completed;
 
             todo.save()
@@ -47,7 +48,4 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error '+ err))
     })
 
-
-
-})
 module.exports = router;

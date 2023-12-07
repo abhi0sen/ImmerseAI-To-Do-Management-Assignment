@@ -22,8 +22,10 @@ try{
 
 const user = require("./routes/user");
 const todo = require("./routes/todos")
+const api = require("./routes/authRoute")
 app.use('/user', user)
 app.use('/todo', todo)
+app.use('/api', api)
 
 
 app.listen(PORT, ()=>{

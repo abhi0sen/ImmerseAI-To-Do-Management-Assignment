@@ -26,27 +26,40 @@ const Register = () => {
       setErrMsg("Please enter the Password");
     } else if (password.length < 6) {
       setErrMsg("Your password is too short");
-    } else if((mail.includes("@")) == false || (mail.includes(".")) == false){
+    } else if(!mail.includes("@") && !mail.includes(".")){
       setErrMsg("Please enter a valid mail address")
-      console.log(mail.includes("."), mail.includes("@"))
     }
-     else {
+    else {
       setErrMsg("");
-      axios
-      .get("https://jsonplaceholder.typicode.com/users")
+      axios   .get("https://jsonplaceholder.typicode.com/users")
       .then((response) => {
         console.log(response.data[0].username);
         if (uName == response.data[0].username) {
           alert("Registered Successful!");
-          window.location.href = "/"
-        } else {
-          alert("Invalid Credentials");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
+          // window.location.href = "/"
+          // } else {
+            //   alert("Invalid Credentials");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+        
+        const userData = {
+        username: uName,
+        email: mail,
+        password: password,
+      }
+      
+      console.log(userData)
+
+      axios.post('http://localhost:5000/user/add/', userData)
+      .then(res => console.log((res.data))
+      .catch(err => console.log(err))
+      );
+      
     }
+    console.log(mail.includes("."), mail.includes("@"))
   };
 
   return (
@@ -75,7 +88,7 @@ const Register = () => {
         <Form.Control
           type="mail"
           id="mail"
-          onChange={(text) => setPassword(text.target.value)}
+          onChange={(text) => setMail(text.target.value)}
         />
 
         <div className="text-danger mt-3">{errMsg}</div>
