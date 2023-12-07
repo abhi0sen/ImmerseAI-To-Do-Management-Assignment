@@ -12,19 +12,17 @@ const Navbar = () => {
       const loggedIn = await isLogin()
 
       console.log("loggedIn", loggedIn)
-      // console.log("userId", loggedIn.data.data._id)
+
       if(loggedIn.data.auth){
         setUser(loggedIn.data.data)
         console.log("USer", user)
         setCookie("userId", loggedIn.data.data._id)
         
-        // window.location.href = "/";
       } 
       else{
         window.location.href = "/Login";
       }
     }
-    // {window.location.href == "/Login"?
     authenticate()
     }, [])
 
@@ -33,7 +31,7 @@ const Navbar = () => {
     const handleLogout = () => {
         logOut()
         alert("Logged out Successfully")
-      window.location.href ="/Login"
+        window.location.href ="/Login"
   }
 
   return (
@@ -46,7 +44,7 @@ const Navbar = () => {
         <Link className='text-decoration-none btn' href = "/"><li className='ms-4'>Home</li></Link>
         <Link className='text-decoration-none btn' href = "/Profile"><li className='ms-4'>Profile</li></Link>
         <li className='ms-4'>
-      <button className='btn' onClick={() => {handleLogout}}>Logout</button></li>
+      <button className='btn' onClick={handleLogout}>Logout</button></li>
       </ul>
       </div>
     </div>

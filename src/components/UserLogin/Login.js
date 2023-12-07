@@ -34,10 +34,12 @@ const Login = () => {
 
             setAuthentication(res.data.token)
             setErrMsg("")
-            
+            window.location.href = "/"
           }
           )
-          .catch(err => console.log(err))
+          .catch(err => {console.log(err)
+          setErrMsg("Invalid Credential")
+          })
         }
       };
   return (
@@ -61,11 +63,9 @@ const Login = () => {
           <Link href="/ForgotPassword">Forgot Password</Link>
         </p>
 
-        <Link href="/">
         <Button variant="dark" onClick={handleValues}>
           Login
         </Button>
-        </Link>
       </div>
   )
 }

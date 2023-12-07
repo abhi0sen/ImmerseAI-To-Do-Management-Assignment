@@ -16,6 +16,7 @@ export const setAuthentication = (token) => {
 }
 export const logOut = () => {
     removeCookie("token")
+    removeCookie("userId")
 }
 export const isLogin = async () =>  {
     const token = getCookie("token")
